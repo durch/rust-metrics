@@ -9,6 +9,7 @@
 use std::sync::{Arc, Mutex, MutexGuard};
 use time::{get_time, Timespec};
 use utils::EWMA;
+use std::fmt::Display;
 
 const WINDOW: [f64; 3] = [1.0, 5.0, 15.0];
 
@@ -19,6 +20,13 @@ pub struct MeterSnapshot {
     pub rates: [f64; 3],
     pub mean: f64,
 }
+
+impl Display for MeterSnapshot {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "{}, {}", self.count, self.mean)
+    }
+}
+
 
 #[derive(Debug)]
 struct StdMeterData {

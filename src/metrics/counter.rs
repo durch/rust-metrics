@@ -6,6 +6,7 @@
 
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
+use std::fmt::Display;
 
 /// Naive implementation of a `Counter`.
 #[derive(Debug)]
@@ -20,6 +21,13 @@ pub struct CounterSnapshot {
     /// The snapshot of the counter value.
     pub value: usize,
 }
+
+impl Display for CounterSnapshot {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "{}", self.value)
+    }
+}
+
 
 /// `Counter` is a `Metric` that represents a single numerical value that can
 /// increases over time.

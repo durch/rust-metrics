@@ -15,6 +15,7 @@ mod meter;
 pub use self::counter::{Counter, CounterSnapshot, StdCounter};
 pub use self::gauge::{Gauge, GaugeSnapshot, StdGauge};
 pub use self::meter::{Meter, MeterSnapshot, StdMeter};
+use std::sync::atomic::Ordering;
 
 /// a Metric
 use histogram::Histogram;

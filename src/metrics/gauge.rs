@@ -6,12 +6,13 @@
 
 use std::sync::atomic::{AtomicIsize, Ordering};
 use std::sync::Arc;
+use std::fmt::Display;
 
 /// Naive implementation of a `Gauge`.
 #[derive(Debug)]
 pub struct StdGauge {
     /// The gauge value.
-    value: AtomicIsize,
+    pub value: AtomicIsize,
 }
 
 /// A snapshot of the value of a `Gauge`.
@@ -20,6 +21,13 @@ pub struct GaugeSnapshot {
     /// The snapshot of the gauge value.
     pub value: isize,
 }
+
+impl Display for GaugeSnapshot {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        write!(f, "{}", self.value)
+    }
+}
+
 
 /// `Gauge` is a `Metric` that represents a single numerical value that can
 /// arbitrarily go up and down.
